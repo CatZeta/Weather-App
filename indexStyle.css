@@ -1,0 +1,39 @@
+@media screen and (min-width: 1200px) {
+    /* Styles for larger screens */
+   
+
+}
+ body {
+        font-size: 20px; /* Larger font size for larger screens */
+        background-color: rgb(35, 34, 34); /* Different background color for larger screens */
+        
+    }
+
+header {
+    display: flex;
+    width: 80%;
+    height: 60%;
+    margin: 20% auto;
+    background: url('resources/indexBackground.jpg');
+    
+    border-radius: 20px;
+    filter: opacity(50%);
+    
+}
+
+.form {
+    width: inherit;
+    text-align: center;
+    margin: auto;
+    font-size: 3rem;
+    color: rgba(240, 248, 255, 0.992);
+    font-family: 'Merriweather', sans-serif;
+}
+
+#guestName {
+    width: 30%;
+    height: 30px;
+    font-size: medium;
+    text-align: center;
+   
+}

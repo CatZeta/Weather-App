@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="welcomeStyle.css">
+    <title>Welcome to Lisbon</title>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="welcome">
+                <p>Welcome <span id="welcomeGuest"></span></p>
+            </div>
+        </header>
+
+        <div class="weather">
+            <img src="" alt="weather icon" class="weather-icon">
+            <h1 class="temp">15ºc</h1>
+            <img id="temp-icon" src="resources/temp.png" alt="temp icon">
+
+            <h2 class="city"></h2>
+            <div class="details">
+                <p class="humidity">79%</p>
+                <img id="humidity-icon" src="resources/humidity.png" alt="humidity icon">
+                
+                
+            </div>
+
+
+        </div>
+
+    </main>
+
+    <script>
+
+
+        // Retrieve guestName from localStorage
+        const guestName = localStorage.getItem("guestName");
+       
+        // Display the welcome message
+        document.getElementById("welcomeGuest").textContent = guestName;
+      
+        //Set to Lisbon by default(its only meant for local weather)
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=lisbon&appid=dd5db10c8316ccff65dbf224a3222c9c&units=metric";
+      
+        //To reach the correct icon
+        const weatherIcon = document.querySelector(".weather-icon");
+
+
+        async function checkWeather(){
+            const response = await fetch(apiUrl);
+            var data = await response.json();
+
+            console.log(data);
+
+     
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "ºC<br>" + data.name;
+            document.querySelector(".humidity").innerHTML = data.main.humidity;
+
+            if(data.weather[0].main == "Clouds"){
+                weatherIcon.src = "resources/cloudy.png";
+            }
+
+            else if(data.weather[0].main == "Rain"){
+                weatherIcon.src = "resources/rain.png";
+            }
+
+            else if(data.weather[0].main == "Clear" || "Sun"){
+                weatherIcon.src = "resources/sun.png";
+            }
+
+        }
+
+        checkWeather();
+
+    </script>
+
+</body>
+</html>
