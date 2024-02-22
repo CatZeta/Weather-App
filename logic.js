@@ -31,8 +31,8 @@ async function checkWeather() {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        document.getElementById("tempIcon").innerHTML = Math.round(data.main.temp) + "ºC<br>" + data.name;
-        document.getElementById("humidityIcon").innerHTML = data.main.humidity;
+        document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "ºC<br>" + data.name;
+        document.getElementById("humidity").innerHTML = data.main.humidity;
 
         if (data.weather[0].main == "Clouds") {
             weatherIcon.src = "resources/cloudy.png";
